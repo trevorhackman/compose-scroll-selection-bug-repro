@@ -53,18 +53,6 @@ import androidx.compose.ui.window.application
  * while the button is held down mid-drag-selection. Included so a report can point at a second,
  * working component built on the *same* Compose Foundation selection/scroll primitives, rather than
  * relying on a description of what "should" happen.
- *
- * This reproduced on:
- *  - Kotlin 2.4.10
- *  - Compose Multiplatform 1.12.1 (compose.foundation / compose.ui / compose.desktop)
- *  - Windows 11 Pro (10.0.26100), JBR 21.0.11
- *
- * Possibly related to JetBrains/compose-multiplatform#2689 (dragging a selection past the field's
- * edge doesn't auto-scroll) - that issue is closed as fixed, and its fix is presumably what added
- * the *automatic* edge-triggered scrolling this field already has while dragging. This report is
- * about a different, still-broken input during that same drag: the mouse wheel itself, as a manual
- * alternative/supplement to that automatic edge scroll, is simply not read at all while the
- * button is down - whether or not it's the same underlying cause as #2689 isn't established here.
  */
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "BasicTextField wheel-scroll-during-drag-selection repro") {
